@@ -1,17 +1,19 @@
 import chalk from 'chalk';
 import fs from 'fs';
 
-
 const trataErro = (erro) => {
-    throw new Error(chalk.red(erro.code, 'Não há arquivos no diretório')); 
+    throw new Error(chalk.red(erro.code, 'Arquivo ou Diretório Inexistente!'));
 }
 
-const pegaArquivo = (caminhoDoArquivo) => {
-    const enconding = 'utf-8';    
-    fs.promises
-        .readFile(caminhoDoArquivo, enconding)
-        .then(texto => console.log(chalk.green(texto)))
-        .catch(erro => trataErro(erro));
+const pegaArquivo = async (caminhoDoArquivo) => {
+    try {
+        const enconding = 'utf-8';
+        const texto = await fs.promises.readFile(caminhoDoArquivo, enconding);
+        console.log(texto);
+    } catch (error) {
+        trataErro(error);
+    } 
 }
 
-pegaArquivo('./arquivos/texto.mdx');
+pegaArquivo('./arquivos/texto.md');
+
