@@ -25,5 +25,4 @@ const extraiLinks = (string) => {
 }
 
 
-pegaArquivo('./files/texto.md');
-
+export default pegaArquivo;
