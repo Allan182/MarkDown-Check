@@ -2,26 +2,26 @@ import chalk from 'chalk';
 import fs from 'fs';
 
 
-const trataErro = (erro) => {
-    throw new Error(chalk.red(erro.code, 'Arquivo ou Diretório Inexistente!'));
+const debugError = (erro) => {
+    throw new Error(chalk.red(erro.code, 'Directory or File not Exists!'));
 }
 
-const pegaArquivo = async (caminhoDoArquivo) => {
+const catchFile = async (pathFile) => {
     try {
         const enconding = 'utf-8';
-        const texto = await fs.promises.readFile(caminhoDoArquivo, enconding);
-        return extraiLinks(texto);
+        const text = await fs.promises.readFile(pathFile, enconding);
+        return extractLinks(text);
     } catch (error) {
-        trataErro(error);
+        debugError(error);
     }
 }
 
-const extraiLinks = (string) => {
+const extractLinks = (string) => {
     const regex = /\[([^[\]]*?)\]\((https?:\/\/[^\s?#.].[^\s]*)\)/gm;
-    const capturas = [...string.matchAll(regex)];
-    const result = capturas.map(elemento => ({ [elemento[1]]: elemento[2] }));
-    return result.length !== 0 ? result : 'Não há links no arquivo!';
+    const catchs = [...string.matchAll(regex)];
+    const result = catchs.map(element => ({ [element[1]]: element[2] }));
+    return result.length !== 0 ? result : 'No Have links in the File!';
 }
 
 
-export default pegaArquivo;
+export default catchFile;
