@@ -10,17 +10,19 @@ export default async function listValidate(listLinks) {
 }
 
 async function checaStatus(listURLs) {
-
     const arrStatus = await Promise
-    .all(
-        listURLs.map(async (url) => {
-            const response = await fetch(url);
-            return response.status;
-        })
-    );
-
+        .all(
+            listURLs.map(async (url) => {
+                try {
+                    const response = await fetch(url, { method: 'HEAD' });
+                    console.log(response);
+                    return response.status;
+                } catch (error) {
+                    console.log(error);
+                }
+            })
+        );
     return arrStatus;
-
 }
 
 
