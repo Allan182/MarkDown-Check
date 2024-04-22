@@ -1,26 +1,38 @@
 import catchFile from "./index.js";
 import fs from 'fs';
-
+import listValidate from "./http-validacao.js";
 
 const path = process.argv;
 
 
-function printList(result, identify = '') {
+async function printList(validate, result, identify = '') {
 
-    console.log(
-        "List of Links", 
-        identify,
-        result
-    );
+    if (validate) {
+        console.log(
+            "Validate List",
+            identify,
+            await listValidate(result)
+        );
+    } else {
+        console.log(
+            "List of Links",
+            identify,
+            result
+        );
+    }
+
+
 }
 
 async function processText(args) {
     const path = args[2];
+    const validate = args[3] === '--validate';
+    console.log(validate);
 
     try {
         fs.lstatSync(path);
     } catch (error) {
-        if (error.code === "ENOENT" ) {
+        if (error.code === "ENOENT") {
             console.log("Directory or File not Exists!");
             return;
         }
@@ -28,12 +40,12 @@ async function processText(args) {
 
     if (fs.lstatSync(path).isFile()) {
         const result = await catchFile(path);
-        printList(result)
+        printList(validate, result)
     } else if (fs.lstatSync(path).isDirectory()) {
         const files = await fs.promises.readdir(path);
         files.forEach(async (nameFile) => {
             const list = await catchFile(`${path}/${nameFile}`)
-            printList(list, nameFile);
+            printList(validate, list, nameFile);
         });
     }
 }
