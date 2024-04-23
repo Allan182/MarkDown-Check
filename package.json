@@ -1,21 +1,27 @@
 {
-  "name": "verify-md",
+  "name": "markdown-check",
   "version": "1.0.0",
-  "description": "Automatização da verificação de diretórios e arquivos .MD para analisar se os links estão funcionando corretamente e qual o status code da HTTP request. Para assim filtrar os links quebrados dos funcionais.",
-  "main": "./cli.js",
+  "description": "Lib criada para automatizar o processo de verificação de links dentro de arquivos Markdown para poder analisar arquivos que estão fora do AR e seu status code trazendo otimização na verificação de grandes blogs. Foi implementado verificação por Diretorios e Arquivos Especificos para facilitar a utilização / otimização. Para Instalar A LIB utilize : npm install -g markdown-verify Para executar a Lib Utilize no terminal: markdown-verify 'caminhoDoArquivo/Diretorio' validate Será retornado um array com cada objeto JSON sua URL de acesso e seu Seu Status Code da HTTP Request e o Status Text.",
+  "main": "./src/cli.js", 
   "bin": {
-    "verify-md": "./cli.js"
+    "markdown-check": "./src/cli.js" 
   },
   "type": "module",
   "preferGlobal": true,
   "scripts": {
-    "cli" : "node ./src/cli.js "
+    "cli": "node ./src/cli.js" 
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alura-cursos/2708-node-lib-md.git"
+    "url": "git+https://github.com/Allan182/Automatizacao-Node-JS.git"
   },
-  "keywords": ["md", "node", "HTTP", "markdown", "verify"],
+  "keywords": [
+    "md",
+    "node",
+    "HTTP",
+    "markdown",
+    "verify"
+  ],
   "author": "Allan Furlani",
   "license": "ISC",
   "bugs": {
