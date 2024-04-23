@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import catchFile from "./index.js";
 import fs from 'fs';
 import listValidate from "./http-validacao.js";
@@ -26,8 +28,7 @@ async function printList(validate, result, identify = '') {
 
 async function processText(args) {
     const path = args[2];
-    const validate = args[3] === '--validate';
-    console.log(validate);
+    const validate = args[3] === 'validate';
 
     try {
         fs.lstatSync(path);

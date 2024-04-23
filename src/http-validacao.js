@@ -19,8 +19,8 @@ async function checkStatus(listURLs) {
         .all(
             listURLs.map(async (url) => {
                 try {
-                    const response = await fetch(url, { method: 'HEAD' });
-                    return response.status;
+                    const response = await fetch(url);
+                    return `${response.status} - ${response.statusText}`;
                 } catch (error) {
                    return manageErrors(error);
                 }
