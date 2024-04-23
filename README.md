@@ -1,4 +1,4 @@
-# Automatizacao-Node-JS
+# Markdown Check
 
 Esta Lib tem o intuito de automatizar o processo de verificação de links dentro de arquivos Markdown analisando as URL's e realizando a filtragem dos dados e demonstrando os endereços que estão fora do AR com seu status code ou endereços remotos que não existem. Trazendo automatização na verificação de grandes blogs e processos repetitivos dentro da rotina de uma empresa que trabalha com arquivos em formato markdown. 
 
